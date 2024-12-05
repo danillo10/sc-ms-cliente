@@ -1,5 +1,6 @@
 package com.c9tecnologia.comercial.dto;
 
+import com.c9tecnologia.comercial.validations.CnpjCpf;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -13,6 +14,7 @@ public class ClienteInputDTO {
     private String pessoa;
 
     @NotBlank(message = "O campo CPF/CNPJ é obrigatório")
+    @CnpjCpf(message = "Formato do CPF/CNPJ inválido!")
     private String cnpjcpf;
 
     private String rg;

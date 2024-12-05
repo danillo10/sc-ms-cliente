@@ -1,16 +1,17 @@
 package com.c9tecnologia.comercial.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
 @Data
+@Table(name = "cliente")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +19,14 @@ public class Cliente {
 
     private String situacao;
     private String pessoa;
+
+    @Column(unique = true, nullable = false, length = 25)
     private String cnpjcpf;
     private String rg;
     private String razaoSocial;
     private LocalDate dataNascimento;
+
+    @Column(nullable = false, length = 100)
     private String nomeFantasia;
     private String sexo;
     private String estadoCivil;
@@ -34,6 +39,8 @@ public class Cliente {
     private String ibge;
     private String estado;
     private String celular;
+
+    @Column(unique = true, length = 100)
     private String email;
     private String obs;
     private String tipoCadastro;
@@ -42,14 +49,19 @@ public class Cliente {
     private String listaPreco;
     private String condicaoPagamento;
     private String contaBancaria;
-    private Double limiteCredito;
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal limiteCredito;
+    @Column(precision = 10, scale = 2)
     private Boolean limiteUltrapassar;
     private LocalDate dataInicial;
     private LocalDate dataFinal;
     private LocalDate dataCadastro;
     private LocalTime horaCadastro;
     private String horario;
+    @Column(nullable = false, columnDefinition = "VARCHAR(3) DEFAULT 'Sim'")
     private Boolean deveReceberSms;
+    @Column(nullable = false, columnDefinition = "VARCHAR(3) DEFAULT 'Sim'")
     private Boolean deveReceberTorpedoVoz;
     private String criadoPor;
     private String atualizadoPor;
